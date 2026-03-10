@@ -3,7 +3,7 @@
 EXCEL link:
 https://docs.google.com/spreadsheets/d/1kiyKR2DOoUx4sqiwdC6cRs3luHbCwhsRQYU0-j_b_xg/edit?usp=sharing
 
-PL: 
+# PL: 
 Pobieranie danych finansowych z yfinance (yahoo Finance) i przesyłanie do arkuszy Google za pośrednictwem Pythona i n8n, w celu podjęcia decyzji inwestycyjnej (zakup akcji na giełdzie).
 
 zakładki w Google sheets:
@@ -13,7 +13,7 @@ zakładki w Google sheets:
 
 
 
-ENG: 
+# ENG: 
 Downloading financial data from yfinance (yahoo Finance) and sending to Google sheets via Python and n8n, in order to make an investment decision (purchase of shares on the stock exchange).
 
 bookmarks in Google sheets:
