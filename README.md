@@ -1,5 +1,87 @@
 # financial_scoring_model
-Pulling financial data from yfinance (yahoo finance) and uploading to google sheets via python and n8n
+# Pulling financial data from yfinance (yahoo finance) and uploading to google sheets via python and n8n
 
-EXCEL link: https://docs.google.com/spreadsheets/d/1kiyKR2DOoUx4sqiwdC6cRs3luHbCwhsRQYU0-j_b_xg/edit?usp=sharing
+# EXCEL link:
+https://docs.google.com/spreadsheets/d/1kiyKR2DOoUx4sqiwdC6cRs3luHbCwhsRQYU0-j_b_xg/edit?usp=sharing
+
+import requests
+from datetime import datetime
+import yfinance as yf
+import time
+
+#localhost w n8n
+webhook = 'http://localhost:5678/webhook/company_parameters'
+
+#tickery firm
+tickers = ['TSLA', 
+           'BYDDY', 
+           '1810.HK', 
+           'NVDA', 
+           'TSM', 
+           'GOOGL', 
+           'ABBNY', 
+           'TER', 
+           '9880.HK', 
+           'XPEV']
+
+#dla każdego tickera pobierz wartości wybranych parametrów finansowych
+for t in tickers:
+    ticker = yf.Ticker(t)
+    info = ticker.info
+    price = info.get("currentPrice") or info.get("regularMarketPrice") or info.get("previousClose")
+    market_cap = info.get("marketCap")
+    volume = info.get("volume")
+    high_52w = info.get("fiftyTwoWeekHigh")
+    low_52w = info.get("fiftyTwoWeekLow")
+    fwd_pe = info.get("forwardPE")
+    if fwd_pe is not None and fwd_pe <= 0:
+        fwd_pe = None
+    dividend_yield = info.get('dividendYield')
+    shares_out = info.get('sharesOutstanding')
+    total_revenue = info.get('totalRevenue')
+    net_income = info.get('netIncomeToCommon')
+#zaczytanie total_equity oraz total_assets bezposrednio z bialnsu firm
+    total_equity = ticker.balance_sheet.loc['Stockholders Equity'].iloc[0]
+    total_assets = ticker.balance_sheet.loc['Total Assets'].iloc[0]
+    total_debt = info.get('totalDebt')
+    cash = info.get('totalCash')
+    revenue_growth = info.get('revenueGrowth')
+    eps_growth = info.get('earningsGrowth')
+
+#wrzucanie wartości parametrów do googlesheets
+    payload = {
+        "timestamp": datetime.now().isoformat(timespec="seconds"), 
+        'ticker': t,
+        'price': price, 
+        'market_cap': market_cap, 
+        'volume': volume, 
+        '52w_high': high_52w, 
+        '52w_low': low_52w, 
+        'fwd_pe': fwd_pe,
+        'dividend_yield': dividend_yield,
+        'shares_out': shares_out,
+        'total_revenue': total_revenue,
+        'net_income': net_income,
+        'total_equity': total_equity,
+        'total_assets': total_assets,
+        'total_debt': total_debt,
+        'cash': cash,
+        'revenue_growth': revenue_growth,
+        'eps_growth': eps_growth,
+        }
+    #
+    resp = requests.post(webhook, json=payload, timeout=20)
+    print(t, resp.status_code)
+    time.sleep(1.3)
+
+
+# sprawdzenie w jakich walutach zaciągane są dane finansowe
+import yfinance as yf
+asia_tickers  = ['TSLA', 'AMAT', 'BYDDY', '1810.HK', 'NVDA', 'TSM', 'GOOGL', 'ABBNY', 'TER', '9880.HK', 'XPEV']
+for a_ticker in asia_tickers:
+    value = yf.Ticker(a_ticker)
+    print(f'{a_ticker}\n1.currency - {value.info.get('currency')}')
+    print(f'2.financialccy - {value.info.get('financialCurrency')}')
+#sprawdzenie konkretnych nazw parametrów total equity, total assets w bilansie danej firmy:
+    #print(ticker.balance_sheet.index.tolist())
 
