@@ -7,7 +7,8 @@ import time
 webhook = 'http://localhost:5678/webhook/company_parameters'
 
 # tickery firm
-tickers = ['TSLA', 
+tickers = ['TSLA',
+           'AMAT',
            'BYDDY', 
            '1810.HK', 
            'NVDA', 
@@ -16,13 +17,32 @@ tickers = ['TSLA',
            'ABBNY', 
            'TER', 
            '9880.HK', 
-           'XPEV']
+           'XPEV',
+           'ASML',
+           'LRCX',
+           'SNPS',
+           'CDNS',
+           'ANET',
+           'MSFT',
+           'AMZN',
+           'RKLB',
+           '300750.SZ',
+           '300124.SZ',
+           '601012.SS',
+           '300274.SZ',
+           'HSAI',
+           '2498.HK',
+           '002747.SZ',
+           '0981.HK',
+           'AVGO',
+           ]
 
 # dla każdego tickera pobierz wartości wybranych parametrów finansowych
 for t in tickers:
     ticker = yf.Ticker(t)
     info = ticker.info
     
+    company = info.get("longName") or info.get("shortName")
     price = info.get("currentPrice") or info.get("regularMarketPrice") or info.get("previousClose")
     market_cap = info.get("marketCap")
     volume = info.get("volume")
@@ -49,6 +69,7 @@ for t in tickers:
     payload = {
         "timestamp": datetime.now().isoformat(timespec="seconds"), 
         'ticker': t,
+        'company':company,
         'price': price, 
         'market_cap': market_cap, 
         'volume': volume, 
@@ -69,18 +90,45 @@ for t in tickers:
     
     resp = requests.post(webhook, json=payload, timeout=20)
     print(t, resp.status_code)
-    time.sleep(1.3)
+    time.sleep(4)
 
 
-# sprawdzenie w jakich walutach zaciągane są dane finansowe
+# sprawdzenie w jakich walutach zaciągane sąane finansowe
 import yfinance as yf
-asia_tickers  = ['TSLA', 'AMAT', 'BYDDY', '1810.HK', 'NVDA', 'TSM', 'GOOGL', 'ABBNY', 'TER', '9880.HK', 'XPEV']
-for a_ticker in asia_tickers:
+all_tickers = ['TSLA',
+           'AMAT',
+           'BYDDY', 
+           '1810.HK', 
+           'NVDA', 
+           'TSM', 
+           'GOOGL', 
+           'ABBNY', 
+           'TER', 
+           '9880.HK', 
+           'XPEV',
+           'ASML',
+           'LRCX',
+           'SNPS',
+           'CDNS',
+           'ANET',
+           'MSFT',
+           'AMZN',
+           'RKLB',
+           '300750.SZ',
+           '300124.SZ',
+           '601012.SS',
+           '300274.SZ',
+           'HSAI',
+           '2498.HK',
+           '002747.SZ',
+           '0981.HK',
+           'AVGO',
+           ]
+for a_ticker in all_tickers:
     value = yf.Ticker(a_ticker)
-    print(f'{a_ticker}\n1.currency - {value.info.get('currency')}')
+    print(f"{a_ticker}\n1.currency - {value.info.get('currency')}")
     print(f'2.financialccy - {value.info.get('financialCurrency')}')
 
 # sprawdzenie konkretnych nazw parametrów total equity, total assets w bilansie danej firmy:
 # (poniższy fragment kodu generuje sporo tekstu, więc w pętli jest opcjonalny)
-    #print(ticker.balance_sheet.index.tolist())
-
+    # print(ticker.balance_sheet.index.tolist())
