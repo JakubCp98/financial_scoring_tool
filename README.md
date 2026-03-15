@@ -14,14 +14,14 @@ Zautomatyzowany model scoringowy spółek notowanych na giełdzie w oparciu o da
 ZAKŁADKI W GOOGLE SHEETS:
 
 A) GŁÓWNE
-1. FINALNA ANALIZA (final analysis) - wyniki modelu dla poszczególnych spółek. Zakładka zawiera także listę wzorów użytych w modelu
-2. Qualitative_Assesment - wielowymiarowa analiza jakościowa dla poszczególnych spółek, dokonana w pełni przez ChatGPT.
+1. Finalna_analiza (final_analysis) - wyniki modelu dla poszczególnych spółek. Zakładka zawiera także listę wzorów użytych w modelu
+2. Qualitative_assesment - wielowymiarowa analiza jakościowa dla poszczególnych spółek, dokonana w pełni przez ChatGPT.
 
 B) DODATKOWO
-1. surowe_dane (raw data) - dane finansowe spółek przed obrobieniem
+1. surowe_dane (raw_data) - dane finansowe spółek przed obrobieniem
 2. fx_adjusted - dane finansowe spółek przewalutowane na USD
 3. percentrank - dane finansowe spółek znormalizowane za pomocą funkcji PERCENTRANK (konieczne dla możliwości porównania)
-4. surowe_dane_opis (raw data description) - opis danych finansowych, wraz z interpretacją
+4. surowe_dane_opis (raw_data_description) - opis danych finansowych, wraz z interpretacją
 
 
 # ENG: 
