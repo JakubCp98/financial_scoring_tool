@@ -15,7 +15,7 @@ ZAKŁADKI W GOOGLE SHEETS:
 
 A) GŁÓWNE
 1. Finalna_analiza (final_analysis) - wyniki modelu dla poszczególnych spółek. Zakładka zawiera także listę wzorów użytych w modelu
-2. Qualitative_assesment - wielowymiarowa analiza jakościowa dla poszczególnych spółek, dokonana w pełni przez ChatGPT.
+2. Ocena_jakościowa (qualitative_assesment) - wielowymiarowa analiza jakościowa dla poszczególnych spółek, dokonana w pełni przez ChatGPT.
 
 B) DODATKOWO
 1. surowe_dane (raw_data) - dane finansowe spółek przed obrobieniem
@@ -35,12 +35,12 @@ An automated scoring model for publicly traded companies based on financial data
 GOOGLE SHEETS TABS:
 
 A) MAIN
-1. FINALNA ANALIZA (final analysis) - model results for individual companies. This taab also contains a list of formulas used in the model.
-2. Qualitative_Assessment - multidimensional qualitative analysis for individual companies, performed entirely by ChatGPT.
+1. Finalna_analiza (final_analysis) - model results for individual companies. This taab also contains a list of formulas used in the model.
+2. Ocena_jakościowa (qualitative_assesment) - multidimensional qualitative analysis for individual companies, performed entirely by ChatGPT.
 
 B) ADDITIONALLY
 1. surowe_dane (raw data) - company financial data before processing
 2. fx_adjusted - company financial data converted to USD
 3. percentrank - company financial data normalized using the PERCENTRANK function (required for comparison)
-4. surowe_dane_opis (raw data description) - description of the financial data, along with its interpretation
+4. surowe_dane_opis (raw_data_description) - description of the financial data, along with its interpretation
    
