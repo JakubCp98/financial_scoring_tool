@@ -1,6 +1,3 @@
-EXCEL link:
-https://docs.google.com/spreadsheets/d/1kiyKR2DOoUx4sqiwdC6cRs3luHbCwhsRQYU0-j_b_xg/edit?usp=sharing
-
 # PL: 
 Zautomatyzowany model scoringowy spółek notowanych na giełdzie w oparciu o dane finansowe pobrane z yfinance (Yahoo Finance) oraz ocenę jakościową, dokonaną w pełni przez LLM (ChatGPT). Uzyskane wyniki pozwalają na dokonanie lepszej decyzji inwestycyjnej podczas zakupu akcji.
 
@@ -21,6 +18,7 @@ B) DODATKOWO
 3. percentrank - dane finansowe spółek znormalizowane za pomocą funkcji PERCENTRANK (konieczne dla możliwości porównania)
 4. surowe_dane_opis (raw_data_description) - opis danych finansowych, wraz z interpretacją
 
+link: https://docs.google.com/spreadsheets/d/1kiyKR2DOoUx4sqiwdC6cRs3luHbCwhsRQYU0-j_b_xg/edit?usp=sharing
 
 # ENG: 
 An automated scoring model for publicly traded companies based on financial data sourced from yfinance (Yahoo Finance) and a qualitative assessment performed entirely by LLM (ChatGPT). The results allow for better investment decisions when purchasing shares.
@@ -41,4 +39,5 @@ B) ADDITIONALLY
 2. fx_adjusted - company financial data converted to USD
 3. percentrank - company financial data normalized using the PERCENTRANK function (required for comparison)
 4. surowe_dane_opis (raw_data_description) - description of the financial data, along with its interpretation
-   
+
+link: https://docs.google.com/spreadsheets/d/1kiyKR2DOoUx4sqiwdC6cRs3luHbCwhsRQYU0-j_b_xg/edit?usp=sharing
