@@ -1,5 +1,3 @@
-# financial_scoring_tool
-
 EXCEL link:
 https://docs.google.com/spreadsheets/d/1kiyKR2DOoUx4sqiwdC6cRs3luHbCwhsRQYU0-j_b_xg/edit?usp=sharing
 
