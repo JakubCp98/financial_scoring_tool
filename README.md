@@ -1,4 +1,4 @@
-# PL: 
+# PL
 Zautomatyzowany model scoringowy spółek notowanych na giełdzie w oparciu o dane finansowe pobrane z yfinance (Yahoo Finance) oraz ocenę jakościową, dokonaną w pełni przez LLM (ChatGPT). Uzyskane wyniki pozwalają na dokonanie lepszej decyzji inwestycyjnej podczas zakupu akcji.
 
 - Model ocenia firmy w czterech wymiarach finansowych – wzrostu, kondycji finansowej, stabilności oraz aktualnej wyceny – połączonych w znormalizowany, wieloczynnikowy wynik.
@@ -20,7 +20,7 @@ B) DODATKOWO
 
 link: https://docs.google.com/spreadsheets/d/1kiyKR2DOoUx4sqiwdC6cRs3luHbCwhsRQYU0-j_b_xg/edit?usp=sharing
 
-# ENG: 
+# ENG
 An automated scoring model for publicly traded companies based on financial data sourced from yfinance (Yahoo Finance) and a qualitative assessment performed entirely by LLM (ChatGPT). The results allow for better investment decisions when purchasing shares.
 
 - The model evaluates companies across four financial dimensions – growth, financial condition, stability, and current valuation – combined into a standardized, multi-factor score.
