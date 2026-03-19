@@ -35,6 +35,8 @@ tickers = ['TSLA',
            '002747.SZ',
            '0981.HK',
            'AVGO',
+           'AAPL',
+           'PLTR',
            ]
 
 # dla każdego tickera pobierz wartości wybranych parametrów finansowych
@@ -56,7 +58,7 @@ for t in tickers:
     total_revenue = info.get('totalRevenue')
     net_income = info.get('netIncomeToCommon')
 
-# zaczytanie total_equity oraz total_assets bezposrednio z bialnsu firm
+# zaczytanie total_equity oraz total_assets bezposrednio z bialnsu firm:
     total_equity = ticker.balance_sheet.loc['Stockholders Equity'].iloc[0]
     total_assets = ticker.balance_sheet.loc['Total Assets'].iloc[0]
 
@@ -64,6 +66,22 @@ for t in tickers:
     cash = info.get('totalCash')
     revenue_growth = info.get('revenueGrowth')
     eps_growth = info.get('earningsGrowth')
+    ebitda = info.get("ebitda")
+    quick_ratio = info.get("quickRatio")
+    enterprise_value = info.get("enterpriseValue")
+
+# zaczytanie operating_cashflow i capex bezposrednio ze sprawozdania cashflow:
+    operating_cashflow = ticker.cashflow.loc["Operating Cash Flow"].iloc[0]
+    capex = ticker.cashflow.loc["Capital Expenditure"].iloc[0]
+    free_cashflow = ticker.cashflow.loc["Free Cash Flow"].iloc[0]
+
+# jezeli nie ma (!= różne od) operating_cashflow ale jest free_cashflow i capex:
+    if operating_cashflow != operating_cashflow and free_cashflow is not None and capex is not None:
+        operating_cashflow = free_cashflow - capex
+
+# jezeli nie ma (!= różne od) free_cashflow ale jest operating_cashflow i capex:
+    if free_cashflow != free_cashflow and operating_cashflow is not None and capex is not None:
+        free_cashflow = operating_cashflow + capex
 
 # wrzucanie wartości parametrów do googlesheets
     payload = {
@@ -86,49 +104,29 @@ for t in tickers:
         'cash': cash,
         'revenue_growth': revenue_growth,
         'eps_growth': eps_growth,
+        'ebitda': ebitda,
+        'quick_ratio': quick_ratio,
+        'enterprise_value': enterprise_value,
+        'operating_cashflow': operating_cashflow,
+        'capex': capex,
+        'free_cashflow': free_cashflow,
+        'currency': info.get('currency'),
+        'financial_currency': info.get('financialCurrency'),
         }
     
     resp = requests.post(webhook, json=payload, timeout=20)
+    print('\n')
     print(t, resp.status_code)
+
+# sprawdzenie w jakich walutach zaciągane dane finansowe
+    print(f"1.currency - {ticker.info.get('currency')}")
+    print(f'2.financialccy - {ticker.info.get('financialCurrency')}')
     time.sleep(4)
 
-
-# sprawdzenie w jakich walutach zaciągane sąane finansowe
-import yfinance as yf
-all_tickers = ['TSLA',
-           'AMAT',
-           'BYDDY', 
-           '1810.HK', 
-           'NVDA', 
-           'TSM', 
-           'GOOGL', 
-           'ABBNY', 
-           'TER', 
-           '9880.HK', 
-           'XPEV',
-           'ASML',
-           'LRCX',
-           'SNPS',
-           'CDNS',
-           'ANET',
-           'MSFT',
-           'AMZN',
-           'RKLB',
-           '300750.SZ',
-           '300124.SZ',
-           '601012.SS',
-           '300274.SZ',
-           'HSAI',
-           '2498.HK',
-           '002747.SZ',
-           '0981.HK',
-           'AVGO',
-           ]
-for a_ticker in all_tickers:
-    value = yf.Ticker(a_ticker)
-    print(f"{a_ticker}\n1.currency - {value.info.get('currency')}")
-    print(f'2.financialccy - {value.info.get('financialCurrency')}')
+# OPCJONALNIE (generuje dużo tekstu):
 
 # sprawdzenie konkretnych nazw parametrów total equity, total assets w bilansie danej firmy:
-# (poniższy fragment kodu generuje sporo tekstu, więc w pętli jest opcjonalny)
     # print(ticker.balance_sheet.index.tolist())
+
+# sprawdzenie konkretnych nazw parametrów operating_cashflow i capex danej firmy:
+    # print(ticker.cashflow.index.tolist())
