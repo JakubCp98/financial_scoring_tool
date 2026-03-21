@@ -1,7 +1,7 @@
 # PL
 Zautomatyzowany model scoringowy spółek notowanych na giełdzie w oparciu o dane finansowe pobrane z yfinance (Yahoo Finance) oraz ocenę jakościową, dokonaną w pełni przez LLM (ChatGPT). Uzyskane wyniki pozwalają na dokonanie lepszej decyzji inwestycyjnej podczas zakupu akcji.
 
-- Model ocenia firmy w czterech wymiarach finansowych – wzrostu, kondycji finansowej, stabilności oraz aktualnej wyceny – połączonych w znormalizowany, wieloczynnikowy wynik.
+- Model ocenia firmy w czterech wymiarach finansowych – tempa wzrostu, kondycji finansowej, stabilności oraz aktualnej wyceny – połączonych w znormalizowany, wieloczynnikowy wynik.
 - Uwzględnia on również cztery filary jakościowe (technologia, strategia, trend, konkurencyjność), wyrażone w skali 0 - 100 (0 - najgorzej, 100 - najlepiej) w oparciu o szeroką gamę podkategorii.
 - Finalny wynik jest średnią ważoną trzech parametrów: Wyceny, Oceny Finansowej oraz Oceny Jakosciowej, prowadzący do uzyskania decyzji typu BUY, SELL lub HOLD.
 - Model został stworzony głównie do nauki języka Python, interfejsów API oraz platformy n8n, z drugorzędnym naciskiem na finanse i inwestowanie. W związku z tym, nie należy go traktować jako bezpośrednie narzędzie inwestycyjne ze względu na ograniczony zakres analizy.
@@ -23,7 +23,7 @@ link: https://docs.google.com/spreadsheets/d/1kiyKR2DOoUx4sqiwdC6cRs3luHbCwhsRQY
 # ENG
 An automated scoring model for publicly traded companies based on financial data sourced from yfinance (Yahoo Finance) and a qualitative assessment performed entirely by LLM (ChatGPT). The results allow for better investment decisions when purchasing shares.
 
-- The model evaluates companies across four financial dimensions – growth, financial condition, stability, and current valuation – combined into a standardized, multi-factor score.
+- The model evaluates companies across four financial dimensions – growth momentum, financial condition, stability, and current valuation – combined into a standardized, multi-factor score.
 - It also considers four qualitative pillars (technology, strategy, trend, competitiveness), expressed on a scale of 0-100 (0 - worst, 100 - best) based on a wide range of subcategories.
 - The final score is a weighted average of three parameters: Valuation, Financial Rating, and Qualitative Rating, leading to a BUY, SELL, or HOLD decision.
 - The model was created primarily for learning Python, APIs, and n8n platform, with a secondary focus on finance and investing. Therefore, it should not be considered a direct investment tool due to its limited scope of analysis.
