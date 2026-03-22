@@ -37,6 +37,11 @@ tickers = ['TSLA',
            'AVGO',
            'AAPL',
            'PLTR',
+           '005380.KS',
+           'AMD',
+           'INTC',
+           'FTNT',
+           'NEE',
            ]
 
 # dla każdego tickera pobierz wartości wybranych parametrów finansowych
