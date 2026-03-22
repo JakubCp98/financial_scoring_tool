@@ -1,16 +1,20 @@
 # PL
-Zautomatyzowany model scoringowy spółek notowanych na giełdzie w oparciu o dane finansowe pobrane z yfinance (Yahoo Finance) oraz ocenę jakościową, dokonaną w pełni przez LLM (ChatGPT). Uzyskane wyniki pozwalają na dokonanie lepszej decyzji inwestycyjnej podczas zakupu akcji.
+Zautomatyzowany pipeline do analizy spółek giełdowych, który pobiera dane finansowe z Yahoo Finance, przetwarza je w modelu wieloczynnikowym oraz rozszerza analizę o ocenę jakościową generowaną przez LLM (ChatGPT).
 
-- Model ocenia firmy w czterech wymiarach finansowych – tempa wzrostu, kondycji finansowej, stabilności oraz aktualnej wyceny – połączonych w znormalizowany, wieloczynnikowy wynik.
-- Uwzględnia on również cztery filary jakościowe (technologia, strategia, trend, konkurencyjność), wyrażone w skali 0 - 100 (0 - najgorzej, 100 - najlepiej) w oparciu o szeroką gamę podkategorii.
-- Finalny wynik jest średnią ważoną trzech parametrów: Wyceny, Oceny Finansowej oraz Oceny Jakosciowej, prowadzący do uzyskania decyzji typu BUY, SELL lub HOLD.
-- Model został stworzony głównie do nauki języka Python, interfejsów API oraz platformy n8n, z drugorzędnym naciskiem na finanse i inwestowanie. W związku z tym, nie należy go traktować jako bezpośrednie narzędzie inwestycyjne ze względu na ograniczony zakres analizy.
+KLUCZOWE ELEMENTY:
+- pobieranie danych via API (yfinance, Python)
+- przetwarzanie i normalizacja danych (percentile ranking)
+- ocena finansowa (tempo wzrostu, kondycja finansowa, stabilność finansowa, wycena)
+- ocena jakościowa via ChatGPT API (technologia, strategia, trend, konkurencyjność)
+- finalny wynik stanowi średnią ważoną oceny finansowej, wyceny oraz oceny jakościowej
+- system generuje automatyczny sygnał inwestycyjny (BUY / HOLD / SELL)
+- raportowanie wyników w Google Sheets (automatyzacja przez n8n)
 
 ZAKŁADKI W GOOGLE SHEETS:
 
 A) GŁÓWNE
-1. Finalna_analiza (final_analysis) - wyniki modelu dla poszczególnych spółek. Zakładka zawiera także listę wzorów użytych w modelu
-2. Ocena_jakościowa (qualitative_assesment) - wielowymiarowa analiza jakościowa dla poszczególnych spółek, dokonana w pełni przez ChatGPT (via API).
+1. Finalna_analiza (final_analysis) - wyniki modelu dla każdej z firm. Zakładka zawiera także listę wzorów użytych w modelu.
+2. Ocena_jakościowa (qualitative_assesment) - analiza jakościowa dla poszczególnych spółek.
 
 B) DODATKOWO
 1. surowe_dane (raw_data) - dane finansowe spółek przed obrobieniem
@@ -21,12 +25,17 @@ B) DODATKOWO
 link: https://docs.google.com/spreadsheets/d/1kiyKR2DOoUx4sqiwdC6cRs3luHbCwhsRQYU0-j_b_xg/edit?usp=sharing
 
 # ENG
-An automated scoring model for publicly traded companies based on financial data sourced from yfinance (Yahoo Finance) and a qualitative assessment performed entirely by LLM (ChatGPT). The results allow for better investment decisions when purchasing shares.
+An automated pipeline for analyzing publicly traded companies that retrieves financial data from Yahoo Finance, processes it using a multi-factor model, and enhances the analysis with LLM-generated qualitative evaluation (ChatGPT).
 
-- The model evaluates companies across four financial dimensions – growth momentum, financial condition, stability, and current valuation – combined into a standardized, multi-factor score.
-- It also considers four qualitative pillars (technology, strategy, trend, competitiveness), expressed on a scale of 0-100 (0 - worst, 100 - best) based on a wide range of subcategories.
-- The final score is a weighted average of three parameters: Valuation, Financial Rating, and Qualitative Rating, leading to a BUY, SELL, or HOLD decision.
-- The model was created primarily for learning Python, APIs, and n8n platform, with a secondary focus on finance and investing. Therefore, it should not be considered a direct investment tool due to its limited scope of analysis.
+
+KEY COMPONENTS
+- data retrieval via API (yfinance, Python)
+- data processing and normalization (percentile ranking)
+- financial evaluation (growth, financial condition, financial stability, valuation)
+- qualitative evaluation via ChatGPT API (technology, strategy, trend, competitiveness)
+- final score calculated as a weighted average of financial evaluation, pricing, and qualitative evaluation
+- system generates an automated investment signal (BUY / HOLD / SELL)
+- reporting in Google Sheets (automation via n8n)
 
 GOOGLE SHEETS TABS:
 
